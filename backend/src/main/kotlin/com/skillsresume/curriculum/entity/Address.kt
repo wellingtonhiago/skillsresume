@@ -1,9 +1,6 @@
 package com.skillsresume.curriculum.entity
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
 @Table(name = "tb_andress")
@@ -13,5 +10,9 @@ data class Address(
     var idAndress: Long? = null,
     var city: String,
     var state: String,
-    var zipCode: String
+    var zipCode: String,
+
+    @OneToOne(cascade = arrayOf(CascadeType.ALL))
+    @JoinColumn(name = "curriculum_id")
+    var curriculum: Curriculum
 )

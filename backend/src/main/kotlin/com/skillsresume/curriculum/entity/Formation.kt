@@ -3,11 +3,11 @@ package com.skillsresume.curriculum.entity
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "tb_skill")
-data class Skill(
+@Table(name = "tb_formation")
+data class Formation(
     @Id
     @GeneratedValue
-    var idSkill: Long? = null,
+    var idFormation: Long? = null,
     var name: String,
 
     @ManyToOne
