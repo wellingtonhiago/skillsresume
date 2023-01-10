@@ -1,4 +1,4 @@
-package com.skillsresume.curriculum.entity
+package com.skillsresume.curriculum.entities
 
 import jakarta.persistence.*
 import java.util.Date
