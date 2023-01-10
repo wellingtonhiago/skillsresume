@@ -3,10 +3,10 @@ package com.skillsresume.curriculum.entities
 import jakarta.persistence.*
 
 @Entity
-@Table(name = "tb_andress")
+@Table(name = "tb_address")
 data class Address(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idAndress: Long? = null,
     var city: String,
     var state: String,

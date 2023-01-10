@@ -1,17 +1,12 @@
 package com.skillsresume.curriculum.entities
 
-import jakarta.persistence.Entity
-import jakarta.persistence.GeneratedValue
-import jakarta.persistence.Id
-import jakarta.persistence.JoinColumn
-import jakarta.persistence.ManyToOne
-import jakarta.persistence.Table
+import jakarta.persistence.*
 
 @Entity
-@Table(name = "tb_socialNetowork")
+@Table(name = "tb_social_netowork")
 data class SocialNetwork(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idNetwork: Long? = null,
     var name: String,
     var url: String,

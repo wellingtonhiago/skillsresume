@@ -7,7 +7,7 @@ import java.util.Date
 @Table(name = "tb_experience")
 data class Experience(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idExperience: Long? = null,
     val startDate: Date,
     val endDate: Date,

@@ -6,7 +6,7 @@ import jakarta.persistence.*
 @Table(name = "tb_curriculum")
 data class Curriculum(
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idCurriculum: Long? = null,
     var title: String,
     var objetive: String,
