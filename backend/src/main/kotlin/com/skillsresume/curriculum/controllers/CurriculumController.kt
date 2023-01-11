@@ -8,18 +8,21 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 import java.util.*
 
 
 @RestController
 @RequestMapping(value = ["/curriculum"])
-class CurriculumController (var curriculumRepository: CurriculumRepository) {
+class CurriculumController(var curriculumRepository: CurriculumRepository) {
 
-    @GetMapping
-    fun getCurriculums(pageable: Pageable): ResponseEntity<Page<Curriculum>> {
-        val curriculum: Page<Curriculum> = curriculumRepository.findAll(pageable)
-        return ResponseEntity.ok(curriculum)
+    @GetMapping(value = ["/search"])
+    fun getCurriculumsAndSearch(
+        @RequestParam(value = "title", defaultValue = "") title: String,
+        pageable: Pageable
+    ): ResponseEntity<Page<Curriculum>> {
+        return ResponseEntity.ok(curriculumRepository.findByTitleContaining(title, pageable))
     }
 
     @GetMapping(value = ["/{id}"])
