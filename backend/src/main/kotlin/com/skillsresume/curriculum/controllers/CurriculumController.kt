@@ -22,7 +22,7 @@ class CurriculumController(var curriculumRepository: CurriculumRepository) {
         @RequestParam(value = "title", defaultValue = "") title: String,
         pageable: Pageable
     ): ResponseEntity<Page<Curriculum>> {
-        return ResponseEntity.ok(curriculumRepository.findByTitleContaining(title, pageable))
+        return ResponseEntity.ok(curriculumRepository.findByTitleContaining(title.uppercase(), pageable))
     }
 
     @GetMapping(value = ["/{id}"])
