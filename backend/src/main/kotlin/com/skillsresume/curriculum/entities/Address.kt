@@ -1,5 +1,7 @@
 package com.skillsresume.curriculum.entities
 
+import com.fasterxml.jackson.annotation.JsonBackReference
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
 @Entity
@@ -12,7 +14,9 @@ data class Address(
     var state: String,
     var zipCode: String,
 
-    @OneToOne(cascade = arrayOf(CascadeType.ALL))
+    @JsonBackReference(value = "curriculum_id")
+    @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "curriculum_id")
+    @JsonIgnore
     var curriculum: Curriculum
 )

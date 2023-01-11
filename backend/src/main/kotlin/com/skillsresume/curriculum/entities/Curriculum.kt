@@ -1,5 +1,6 @@
 package com.skillsresume.curriculum.entities
 
+import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
 
 @Entity
@@ -11,18 +12,20 @@ data class Curriculum(
     var title: String,
     var objetive: String,
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var socialNetwork: MutableList<SocialNetwork>,
 
-    @OneToOne(mappedBy = "curriculum")
+    @JsonBackReference(value = "curriculum")
+    @OneToOne(mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var address: Address,
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var experience: MutableList<Experience>,
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var skill: MutableList<Skill>,
 
-    @OneToMany(mappedBy = "curriculum")
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var formation: MutableList<Formation>
 )
+

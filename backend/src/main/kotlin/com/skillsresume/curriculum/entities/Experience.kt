@@ -1,5 +1,6 @@
 package com.skillsresume.curriculum.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 import java.util.Date
 
@@ -15,5 +16,6 @@ data class Experience(
 
     @ManyToOne
     @JoinColumn(name = "curriculum_id")
+    @JsonIgnore
     var curriculum: Curriculum
 )

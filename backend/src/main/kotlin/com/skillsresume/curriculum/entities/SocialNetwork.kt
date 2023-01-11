@@ -1,5 +1,6 @@
 package com.skillsresume.curriculum.entities
 
+import com.fasterxml.jackson.annotation.JsonIgnore
 import jakarta.persistence.*
 
 @Entity
@@ -13,5 +14,6 @@ data class SocialNetwork(
 
     @ManyToOne
     @JoinColumn(name = "curriculum_id")
+    @JsonIgnore
     var curriculum: Curriculum
 )
