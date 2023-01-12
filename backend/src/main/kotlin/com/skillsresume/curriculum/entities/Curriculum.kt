@@ -1,6 +1,5 @@
 package com.skillsresume.curriculum.entities
 
-import com.fasterxml.jackson.annotation.JsonBackReference
 import jakarta.persistence.*
 
 @Entity
