@@ -11,20 +11,20 @@ data class Curriculum(
     var title: String,
     var objetive: String,
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var socialNetwork: MutableList<SocialNetwork>,
 
 
-    @OneToOne(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
+    @OneToOne(fetch = FetchType.LAZY, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var address: Address,
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var experience: MutableList<Experience>,
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var skill: MutableList<Skill>,
 
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var formation: MutableList<Formation>
 )
 
