@@ -14,8 +14,13 @@ data class Experience(
     val endDate: Date,
     val resume: String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curriculum_id")
     @JsonIgnore
     var curriculum: Curriculum
-)
+
+) {
+    override fun toString(): String {
+        return "Experience(idExperience=$idExperience, startDate=$startDate, endDate=$endDate, resume='$resume', curriculum=$curriculum)"
+    }
+}

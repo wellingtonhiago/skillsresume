@@ -14,8 +14,14 @@ data class Formation(
     val startDate: Date,
     val endDate: Date,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "curriculum_id")
     @JsonIgnore
     var curriculum: Curriculum
-)
+
+
+) {
+    override fun toString(): String {
+        return "Formation(idFormation=$idFormation, name='$name', startDate=$startDate, endDate=$endDate, curriculum=$curriculum)"
+    }
+}

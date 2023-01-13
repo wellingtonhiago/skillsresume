@@ -11,8 +11,13 @@ data class Skill(
     var idSkill: Long? = null,
     var name: String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "curriculum_id")
     @JsonIgnore
     var curriculum: Curriculum
-)
+
+) {
+    override fun toString(): String {
+        return "Skill(idSkill=$idSkill, name='$name', curriculum=$curriculum)"
+    }
+}

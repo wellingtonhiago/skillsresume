@@ -12,8 +12,13 @@ data class SocialNetwork(
     var name: String,
     var url: String,
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "curriculum_id")
     @JsonIgnore
     var curriculum: Curriculum
-)
+
+) {
+    override fun toString(): String {
+        return "SocialNetwork(idNetwork=$idNetwork, name='$name', url='$url', curriculum=$curriculum)"
+    }
+}

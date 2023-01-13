@@ -8,7 +8,7 @@ import jakarta.persistence.*
 data class Address(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var idAndress: Long? = null,
+    var idAddress: Long? = null,
     var city: String,
     var state: String,
     var zipCode: String,
@@ -17,4 +17,10 @@ data class Address(
     @JoinColumn(name = "curriculum_id")
     @JsonIgnore
     var curriculum: Curriculum
-)
+
+
+) {
+    override fun toString(): String {
+        return "Address(idAndress=$idAddress, city='$city', state='$state', zipCode='$zipCode', curriculum=$curriculum)"
+    }
+}
