@@ -14,7 +14,6 @@ data class Curriculum(
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var socialNetwork: MutableList<SocialNetwork>,
 
-
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
     var address: Address,
 
