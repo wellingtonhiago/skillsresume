@@ -11,8 +11,8 @@ data class Formation(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idFormation: Long? = null,
     var name: String,
-    val startDate: Date,
-    val endDate: Date,
+    var startDate: Date,
+    var endDate: Date,
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "curriculum_id")

@@ -10,9 +10,9 @@ data class Experience(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var idExperience: Long? = null,
-    val startDate: Date,
-    val endDate: Date,
-    val resume: String,
+    var startDate: Date,
+    var endDate: Date,
+    var resume: String,
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "curriculum_id")
