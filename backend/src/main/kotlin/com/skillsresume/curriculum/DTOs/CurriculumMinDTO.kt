@@ -3,7 +3,7 @@ package com.skillsresume.curriculum.DTOs
 import com.skillsresume.curriculum.entities.Curriculum
 
 class CurriculumMinDTO(){
-     var idCurriculum: Long? = null
+     var idCurriculum: Long = 0
      var title: String = ""
      var objetive: String = ""
 
