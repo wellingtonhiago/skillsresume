@@ -8,19 +8,14 @@ import jakarta.persistence.*
 data class Address(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var idAddress: Long? = null,
-    var city: String,
-    var state: String,
-    var zipCode: String,
-
+    var idAddress: Long = 0,
+    var city: String = "",
+    var state: String = "",
+    var zipCode: String = "",
     @OneToOne(fetch = FetchType.LAZY, cascade = [CascadeType.ALL])
     @JoinColumn(name = "curriculum_id")
     @JsonIgnore
-    var curriculum: Curriculum
+    var curriculum: Curriculum? = null
+) 
 
 
-) {
-    override fun toString(): String {
-        return "Address(idAndress=$idAddress, city='$city', state='$state', zipCode='$zipCode', curriculum=$curriculum)"
-    }
-}
