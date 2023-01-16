@@ -1,6 +1,5 @@
 package com.skillsresume.curriculum.controllers
 
-import com.skillsresume.curriculum.DTOs.CurriculumAddressDTO
 import com.skillsresume.curriculum.DTOs.CurriculumDetailsDTO
 import com.skillsresume.curriculum.DTOs.CurriculumMinDTO
 import com.skillsresume.curriculum.services.CurriculumService
@@ -23,8 +22,9 @@ class CurriculumController(val curriculumService: CurriculumService) {
     ): ResponseEntity<Page<CurriculumMinDTO>> {
         return ResponseEntity.ok(curriculumService.findAllSearchCurriculums(title, pageable))
     }
+
     @GetMapping(value = ["/{id}"])
-     fun getCurriculumById(@PathVariable id: Long): ResponseEntity<CurriculumDetailsDTO> {
+    fun getCurriculumById(@PathVariable id: Long): ResponseEntity<CurriculumDetailsDTO> {
         return ResponseEntity.ok(curriculumService.finCurriculumById(id))
     }
 
@@ -33,7 +33,7 @@ class CurriculumController(val curriculumService: CurriculumService) {
         val curriculumMinDTO = curriculumService.createCurriculum(curriculumMinDTO)
         val uri: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
             .buildAndExpand(curriculumMinDTO.idCurriculum).toUri()
-            return ResponseEntity.created(uri).body(curriculumMinDTO)
+        return ResponseEntity.created(uri).body(curriculumMinDTO)
     }
 
 }

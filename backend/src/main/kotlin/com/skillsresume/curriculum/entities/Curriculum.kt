@@ -7,28 +7,31 @@ import jakarta.persistence.*
 data class Curriculum(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var idCurriculum: Long? = null,
-    var title: String,
-    var objetive: String,
-
+    var idCurriculum: Long = 0,
+    var title: String = "",
+    var objetive: String = ""
+) {
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
-    var socialNetwork: MutableList<SocialNetwork>,
+    var socialNetwork: MutableList<SocialNetwork>? = arrayListOf()
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
-    var address: Address,
+    var address: Address? = null
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
-    var experience: MutableList<Experience>,
+    var experience: MutableList<Experience>? = arrayListOf()
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
-    var skill: MutableList<Skill>,
+    var skill: MutableList<Skill>? = arrayListOf()
 
     @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
-    var formation: MutableList<Formation>
-
-) {
+    var formation: MutableList<Formation>? = arrayListOf()
     override fun toString(): String {
-        return "Curriculum(idCurriculum=$idCurriculum, title='$title', objetive='$objetive')"
+        return ""
     }
+
 }
+
+
+
+
 

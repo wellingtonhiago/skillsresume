@@ -2,10 +2,11 @@ package com.skillsresume.curriculum.DTOs
 
 import com.skillsresume.curriculum.entities.Curriculum
 
-class CurriculumMinDTO(){
-     var idCurriculum: Long = 0
-     var title: String = ""
-     var objetive: String = ""
+class CurriculumMinDTO(
+    var idCurriculum: Long = 0,
+    var title: String = "",
+    var objetive: String = ""
+) {
 
     constructor(curriculum: Curriculum) : this() {
         this.idCurriculum = curriculum.idCurriculum

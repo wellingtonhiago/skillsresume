@@ -1,9 +1,7 @@
 package com.skillsresume.curriculum.services
 
-import com.skillsresume.curriculum.DTOs.CurriculumAddressDTO
 import com.skillsresume.curriculum.DTOs.CurriculumDetailsDTO
 import com.skillsresume.curriculum.DTOs.CurriculumMinDTO
-import com.skillsresume.curriculum.entities.Address
 import com.skillsresume.curriculum.entities.Curriculum
 import com.skillsresume.curriculum.repositories.CurriculumRepository
 import org.springframework.data.domain.Page
@@ -30,10 +28,10 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
 
     @Transactional(readOnly = true)
     fun createCurriculum(curriculumMinDTO: CurriculumMinDTO): CurriculumMinDTO {
-    val curriculumEntity = Curriculum(
-        title = curriculumMinDTO.title,
-        objetive = curriculumMinDTO.objetive
-    )
+        val curriculumEntity = Curriculum(
+            title = curriculumMinDTO.title,
+            objetive = curriculumMinDTO.objetive
+        )
         curriculumRepository.save(curriculumEntity)
         return CurriculumMinDTO(curriculumEntity)
     }
