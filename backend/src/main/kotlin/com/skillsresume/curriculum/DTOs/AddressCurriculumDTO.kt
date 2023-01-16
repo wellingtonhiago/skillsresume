@@ -2,7 +2,7 @@ package com.skillsresume.curriculum.DTOs
 
 import com.skillsresume.curriculum.entities.Address
 
-class CurriculumAddressDTO() {
+class AddressCurriculumDTO() {
     var idAddress: Long = 0
     var city: String = ""
     var state: String = ""

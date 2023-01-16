@@ -1,6 +1,6 @@
 package com.skillsresume.curriculum.controllers
 
-import com.skillsresume.curriculum.DTOs.CurriculumAddressDTO
+import com.skillsresume.curriculum.DTOs.AddressCurriculumDTO
 import com.skillsresume.curriculum.services.AddressService
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.PostMapping
@@ -16,10 +16,10 @@ import java.net.URI
 class AddressController(val addressService: AddressService) {
 
     @PostMapping
-    fun createAddress(@RequestBody curriculumAddressDTO: CurriculumAddressDTO): ResponseEntity<CurriculumAddressDTO> {
-        val curriculumAddressDTOS: CurriculumAddressDTO = addressService.createAddressByCurriculum(curriculumAddressDTO)
+    fun createAddress(@RequestBody addressCurriculumDTO: AddressCurriculumDTO): ResponseEntity<AddressCurriculumDTO> {
+        val addressCurriculumDTOS: AddressCurriculumDTO = addressService.createAddressByCurriculum(addressCurriculumDTO)
         val uri: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-            .buildAndExpand(curriculumAddressDTOS.idAddress).toUri()
-        return ResponseEntity.created(uri).body(curriculumAddressDTOS)
+            .buildAndExpand(addressCurriculumDTOS.idAddress).toUri()
+        return ResponseEntity.created(uri).body(addressCurriculumDTOS)
     }
 }
