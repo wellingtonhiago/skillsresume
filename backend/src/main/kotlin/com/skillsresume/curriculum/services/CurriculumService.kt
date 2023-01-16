@@ -7,6 +7,7 @@ import com.skillsresume.curriculum.repositories.CurriculumRepository
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
+import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
 
 
@@ -34,6 +35,14 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
         )
         curriculumRepository.save(curriculumEntity)
         return CurriculumMinDTO(curriculumEntity)
+    }
+
+    @Transactional(readOnly = false)
+    fun updateByCurriculum(id: Long, curriculumMinDTO: CurriculumMinDTO): CurriculumMinDTO {
+        val curriculumEntity = curriculumRepository.getReferenceById(id)
+        curriculumEntity.title = curriculumMinDTO.title
+        curriculumEntity.objetive = curriculumMinDTO.objetive
+        return CurriculumMinDTO(curriculumRepository.save(curriculumEntity))
     }
 
 }

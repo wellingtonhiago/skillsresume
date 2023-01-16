@@ -36,4 +36,9 @@ class CurriculumController(val curriculumService: CurriculumService) {
         return ResponseEntity.created(uri).body(curriculumMinDTO)
     }
 
+    @PutMapping(value = ["/{id}"])
+    fun updateCurriculumById(@PathVariable id: Long, @RequestBody curriculumMinDTO: CurriculumMinDTO): ResponseEntity<CurriculumMinDTO> {
+        return ResponseEntity.ok(curriculumService.updateByCurriculum(id, curriculumMinDTO))
+    }
+
 }
