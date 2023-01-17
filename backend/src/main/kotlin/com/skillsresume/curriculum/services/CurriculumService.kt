@@ -32,7 +32,7 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
     fun finCurriculumById(id: Long): CurriculumDetailsDTO {
         try {
             val curriculum: Curriculum =
-                curriculumRepository.findById(id).orElseThrow { ResourceNotFoundException("User not found") }
+                curriculumRepository.findById(id).orElseThrow { ResourceNotFoundException("Curriculum Not Found") }
             return (CurriculumDetailsDTO(curriculum))
         } catch (e: NullPointerException) {
             throw ResourceNotFoundException("Curriculum has no registered Address")
