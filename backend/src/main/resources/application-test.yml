@@ -14,10 +14,17 @@ spring:
     open-in-view: true
     properties:
       hibernate:
+        show_sql: true
         format_sql: true
+
+
 springdoc:
   paths-to-match:
-    - /api/**/vi
+  - /api/**/v1/**
   swagger-ui:
     use-root-path: true
+#  packages-to-scan:
+#  packages-to-scan:
+#    - com.skillsresume.curriculum
+
 
