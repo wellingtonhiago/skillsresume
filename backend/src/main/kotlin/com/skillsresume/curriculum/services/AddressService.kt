@@ -21,12 +21,8 @@ class AddressService(val addressRepository: AddressRepository, val curriculumRep
             zipCode = addressCurriculumDTO.zipCode,
             curriculum = curriculumEntity
         )
-
         curriculumEntity.address = address
-        curriculumRepository.save(address.curriculum!!)
+        addressRepository.save(address)
         return AddressCurriculumDTO(address)
-//        return CurriculumAddressDTO(curriculumEntity.address!!)
     }
-
-
 }
