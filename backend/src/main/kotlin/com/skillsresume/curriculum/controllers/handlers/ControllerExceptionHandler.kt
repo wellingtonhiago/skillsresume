@@ -2,8 +2,8 @@ package com.skillsresume.curriculum.controllers.handlers
 
 import com.skillsresume.curriculum.DTOs.handlersDTO.CustomError
 import com.skillsresume.curriculum.DTOs.handlersDTO.ValidationError
-import com.skillsresume.curriculum.services.exeptions.DataBaseException
-import com.skillsresume.curriculum.services.exeptions.ResourceNotFoundException
+import com.skillsresume.curriculum.services.exceptions.DataBaseException
+import com.skillsresume.curriculum.services.exceptions.ResourceNotFoundException
 import jakarta.servlet.http.HttpServletRequest
 import org.hibernate.exception.ConstraintViolationException
 import org.springframework.http.HttpStatus
