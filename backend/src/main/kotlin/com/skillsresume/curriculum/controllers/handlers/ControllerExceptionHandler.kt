@@ -25,7 +25,7 @@ class ControllerExceptionHandler {
     @ExceptionHandler(DataBaseException::class)
     fun dataBase(e: DataBaseException, request: HttpServletRequest): ResponseEntity<CustomError?>? {
         val status: HttpStatus = HttpStatus.BAD_REQUEST
-        val error = CustomError(Instant.now(), status.value(), "error", request.requestURI)
+        val error = e.message?.let { CustomError(Instant.now(), status.value(), it, request.requestURI) }
         return ResponseEntity.status(status).body<CustomError>(error)
     }
 
@@ -36,7 +36,7 @@ class ControllerExceptionHandler {
     ): ResponseEntity<CustomError?>? {
         val status: HttpStatus = HttpStatus.UNPROCESSABLE_ENTITY
         val err = ValidationError(Instant.now(), status.value(), "Dados inválidos", request.requestURI)
-        for (f in e.getBindingResult().getFieldErrors()) {
+        for (f in e.bindingResult.fieldErrors) {
             err.addError(f.field, f.defaultMessage)
         }
         return ResponseEntity.status(status).body<CustomError>(err)
@@ -49,6 +49,6 @@ class ControllerExceptionHandler {
     ): ResponseEntity<CustomError> {
         val status: HttpStatus = HttpStatus.BAD_REQUEST
         val error = CustomError(Instant.now(), status.value(), "Dados já cadastrado", request.requestURI)
-        return ResponseEntity.status(status).body<CustomError>(error)
+        return ResponseEntity.status(status).body(error)
     }
 }

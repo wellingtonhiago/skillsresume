@@ -4,11 +4,17 @@ import com.skillsresume.curriculum.DTOs.CurriculumDetailsDTO
 import com.skillsresume.curriculum.DTOs.CurriculumMinDTO
 import com.skillsresume.curriculum.entities.Curriculum
 import com.skillsresume.curriculum.repositories.CurriculumRepository
+import com.skillsresume.curriculum.services.exeptions.DataBaseException
+import com.skillsresume.curriculum.services.exeptions.ResourceNotFoundException
+import org.hibernate.exception.ConstraintViolationException
+import org.springframework.dao.DataIntegrityViolationException
+import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
+import java.lang.NullPointerException
 
 
 @Service
@@ -23,26 +29,44 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
 
     @Transactional(readOnly = true)
     fun finCurriculumById(id: Long): CurriculumDetailsDTO {
-        val curriculum: Curriculum = curriculumRepository.findById(id).orElse(null)
-        return (CurriculumDetailsDTO(curriculum))
+        try {
+            val curriculum: Curriculum =
+                curriculumRepository.findById(id).orElseThrow { ResourceNotFoundException("User not found") }
+            return (CurriculumDetailsDTO(curriculum))
+        } catch (e: NullPointerException) {
+            throw ResourceNotFoundException("Curriculum has no registered Address")
+        }
     }
 
     @Transactional(readOnly = true)
     fun createCurriculum(curriculumMinDTO: CurriculumMinDTO): CurriculumMinDTO {
-        val curriculumEntity = Curriculum(
-            title = curriculumMinDTO.title,
-            objetive = curriculumMinDTO.objetive
-        )
-        curriculumRepository.save(curriculumEntity)
-        return CurriculumMinDTO(curriculumEntity)
+        try {
+            val curriculumEntity = Curriculum(
+                title = curriculumMinDTO.title,
+                objetive = curriculumMinDTO.objetive
+            )
+            curriculumRepository.save(curriculumEntity)
+            return CurriculumMinDTO(curriculumEntity)
+        } catch (e: ConstraintViolationException) {
+            throw ResourceNotFoundException("Personalizar ")
+        }
     }
 
-    @Transactional(readOnly = false)
+    @Transactional(readOnly = false, propagation = Propagation.SUPPORTS)
     fun updateByCurriculum(id: Long, curriculumMinDTO: CurriculumMinDTO): CurriculumMinDTO {
-        val curriculumEntity = curriculumRepository.getReferenceById(id)
-        curriculumEntity.title = curriculumMinDTO.title
-        curriculumEntity.objetive = curriculumMinDTO.objetive
-        return CurriculumMinDTO(curriculumRepository.save(curriculumEntity))
+        try {
+            val curriculumEntity = curriculumRepository.getReferenceById(id)
+            curriculumEntity.title = curriculumMinDTO.title
+            curriculumEntity.objetive = curriculumMinDTO.objetive
+            return CurriculumMinDTO(curriculumRepository.save(curriculumEntity))
+        } catch (e: EmptyResultDataAccessException) {
+            throw ResourceNotFoundException("User not found")
+        } catch (e: DataIntegrityViolationException) {
+            throw DataBaseException("Referential integrity failure")
+        }
     }
 
 }
+
+
+

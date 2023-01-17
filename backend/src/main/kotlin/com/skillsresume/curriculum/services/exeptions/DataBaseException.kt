@@ -1,3 +1,6 @@
 package com.skillsresume.curriculum.services.exeptions
 
-class DataBaseException (exception: String?) : RuntimeException(exception)
+class DataBaseException : RuntimeException {
+    constructor(exception: String?) : super(exception)
+}
+
