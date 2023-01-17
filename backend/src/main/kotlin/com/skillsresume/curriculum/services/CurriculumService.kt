@@ -60,7 +60,7 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
             curriculumEntity.objetive = curriculumMinDTO.objetive
             return CurriculumMinDTO(curriculumRepository.save(curriculumEntity))
         } catch (e: EmptyResultDataAccessException) {
-            throw ResourceNotFoundException("User not found")
+            throw ResourceNotFoundException("Curriculum not found")
         } catch (e: DataIntegrityViolationException) {
             throw DataBaseException("Referential integrity failure")
         }

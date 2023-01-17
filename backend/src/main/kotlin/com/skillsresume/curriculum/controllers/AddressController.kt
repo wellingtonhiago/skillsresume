@@ -12,7 +12,7 @@ import java.net.URI
 
 
 @RestController
-@RequestMapping(value = ["/address"])
+@RequestMapping("/api/address/v1")
 class AddressController(val addressService: AddressService) {
 
     @PostMapping

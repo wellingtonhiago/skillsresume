@@ -12,7 +12,7 @@ import java.net.URI
 
 
 @RestController
-@RequestMapping(value = ["/curriculum"])
+@RequestMapping("/api/curriculum/v1")
 class CurriculumController(val curriculumService: CurriculumService) {
 
     @GetMapping
