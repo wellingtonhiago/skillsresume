@@ -1,7 +1,7 @@
 package com.skillsresume.curriculum.controllers
 
-import com.skillsresume.curriculum.DTOs.AddressCurriculumDTO
-import com.skillsresume.curriculum.DTOs.AddressDTO
+import com.skillsresume.curriculum.DTOs.v1.AddressCurriculumDTO
+import com.skillsresume.curriculum.DTOs.v1.AddressDTO
 import com.skillsresume.curriculum.services.AddressService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.ArraySchema

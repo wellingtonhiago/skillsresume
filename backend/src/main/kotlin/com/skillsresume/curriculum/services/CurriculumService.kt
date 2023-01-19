@@ -1,7 +1,7 @@
 package com.skillsresume.curriculum.services
 
-import com.skillsresume.curriculum.DTOs.CurriculumDetailsDTO
-import com.skillsresume.curriculum.DTOs.CurriculumMinDTO
+import com.skillsresume.curriculum.DTOs.v1.CurriculumDetailsDTO
+import com.skillsresume.curriculum.DTOs.v1.CurriculumMinDTO
 import com.skillsresume.curriculum.entities.Curriculum
 import com.skillsresume.curriculum.repositories.CurriculumRepository
 import com.skillsresume.curriculum.services.exceptions.DataBaseException
@@ -68,7 +68,6 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
             throw DataBaseException("Referential integrity failure")
         }
     }
-
 }
 
 

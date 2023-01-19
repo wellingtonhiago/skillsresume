@@ -1,7 +1,7 @@
 package com.skillsresume.curriculum.controllers
 
-import com.skillsresume.curriculum.DTOs.CurriculumDetailsDTO
-import com.skillsresume.curriculum.DTOs.CurriculumMinDTO
+import com.skillsresume.curriculum.DTOs.v1.CurriculumDetailsDTO
+import com.skillsresume.curriculum.DTOs.v1.CurriculumMinDTO
 import com.skillsresume.curriculum.services.CurriculumService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.tags.Tag

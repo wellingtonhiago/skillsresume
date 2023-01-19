@@ -1,7 +1,7 @@
 package com.skillsresume.curriculum.services
 
-import com.skillsresume.curriculum.DTOs.AddressCurriculumDTO
-import com.skillsresume.curriculum.DTOs.AddressDTO
+import com.skillsresume.curriculum.DTOs.v1.AddressCurriculumDTO
+import com.skillsresume.curriculum.DTOs.v1.AddressDTO
 import com.skillsresume.curriculum.entities.Address
 import com.skillsresume.curriculum.entities.Curriculum
 import com.skillsresume.curriculum.repositories.AddressRepository
