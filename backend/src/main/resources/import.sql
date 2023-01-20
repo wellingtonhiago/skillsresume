@@ -1,3 +1,15 @@
+INSERT INTO tb_users (user_name, full_name, password, account_non_expired, account_non_locked, credentials_non_expired, enabled) VALUES ('maria', 'Maria Rita', 'c0d6b7b7a97ac701f5466a38e317e49f2647f99b9f2f1e9a9f2c652a73e3ac0a60644e0f25db642f', 1, 1, 1, 1);
+INSERT INTO tb_users (user_name, full_name, password, account_non_expired, account_non_locked, credentials_non_expired, enabled) VALUES ('flavio', 'Flavio Costa', 'ab95173bbf7bb94452c2b8ac1aa86c6e27418df4447d47b782aa1712a5b7f89a1001a5570bbac36a', true, true, true, true);
+
+INSERT INTO tb_permission (description) VALUES ('ADMIN');
+INSERT INTO tb_permission (description) VALUES  ('MANAGER');
+INSERT INTO tb_permission (description) VALUES ('COMMON_USER');
+
+INSERT INTO user_permission (id_user, id_permission) VALUES (1, 1);
+INSERT INTO user_permission (id_user, id_permission) VALUES (2, 1);
+INSERT INTO user_permission (id_user, id_permission) VALUES (1, 2);
+
+
 INSERT INTO tb_curriculum (title, objetive) VALUES ('DESENVOLVEDOR FRONTEND', 'CONQUISTAR PRIMEIRA VAGA DEV');
 INSERT INTO tb_curriculum (title, objetive) VALUES ('DESENVOLVEDOR BACKEND', 'CONQUISTAR PRIMEIRA VAGA DEV');
 INSERT INTO tb_curriculum (title, objetive) VALUES ('DEVOPS', 'CONQUISTAR PRIMEIRA VAGA');
