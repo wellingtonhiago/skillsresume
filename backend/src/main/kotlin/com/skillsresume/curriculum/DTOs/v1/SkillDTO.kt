@@ -1,4 +1,4 @@
-package com.skillsresume.curriculum.DTOs
+package com.skillsresume.curriculum.DTOs.v1
 
 import com.skillsresume.curriculum.entities.Skill
 

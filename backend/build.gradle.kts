@@ -27,6 +27,12 @@ dependencies {
     runtimeOnly("com.h2database:h2")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
     testImplementation("org.springframework.security:spring-security-test")
+    implementation("jakarta.validation:jakarta.validation-api:3.0.2")
+    implementation("org.springframework.boot:spring-boot-starter-validation")
+    runtimeOnly("org.springdoc:springdoc-openapi-kotlin:1.6.14")
+    implementation("org.springdoc:springdoc-openapi-starter-webmvc-ui:2.0.2")
+    implementation("com.auth0:java-jwt:4.2.2")
+
 }
 
 tasks.withType<KotlinCompile> {

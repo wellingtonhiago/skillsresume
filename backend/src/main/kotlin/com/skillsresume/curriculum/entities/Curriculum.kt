@@ -11,7 +11,7 @@ data class Curriculum(
     var title: String = "",
     var objetive: String = ""
 ) {
-    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL], orphanRemoval = true)
     var socialNetwork: MutableList<SocialNetwork>? = arrayListOf()
 
     @OneToOne(fetch = FetchType.EAGER, mappedBy = "curriculum", cascade = [CascadeType.ALL])

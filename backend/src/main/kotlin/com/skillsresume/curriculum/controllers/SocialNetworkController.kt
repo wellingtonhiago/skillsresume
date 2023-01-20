@@ -1,8 +1,9 @@
 package com.skillsresume.curriculum.controllers
 
-import com.skillsresume.curriculum.DTOs.v1.AddressCurriculumDTO
 import com.skillsresume.curriculum.DTOs.v1.AddressDTO
-import com.skillsresume.curriculum.services.AddressService
+import com.skillsresume.curriculum.DTOs.v1.SocialNetworkCurriculumDTO
+import com.skillsresume.curriculum.DTOs.v1.SocialNetworkDTO
+import com.skillsresume.curriculum.services.SocialNetworkService
 import io.swagger.v3.oas.annotations.Operation
 import io.swagger.v3.oas.annotations.media.ArraySchema
 import io.swagger.v3.oas.annotations.media.Content
@@ -15,16 +16,16 @@ import java.net.URI
 
 
 @RestController
-@RequestMapping("/api/address/v1")
-class AddressController(val addressService: AddressService) {
-    @Operation(summary = "Create Address", description = "Create Address",
-        tags = ["Address"],
+@RequestMapping("/api/social/v1")
+class SocialNetworkController (val socialNetworkService: SocialNetworkService) {
+    @Operation(summary = "Create Social Network", description = "Create Social Network",
+        tags = ["Social"],
         responses = [
             ApiResponse(
                 description = "Success",
                 responseCode = "200",
                 content = [
-                    Content(array = ArraySchema(schema = Schema(implementation = AddressCurriculumDTO::class)))
+                    Content(array = ArraySchema(schema = Schema(implementation = SocialNetworkCurriculumDTO::class)))
                 ]
             ),
             ApiResponse(description = "Bad Request", responseCode = "400", content = [
@@ -39,16 +40,16 @@ class AddressController(val addressService: AddressService) {
         ]
     )
     @PostMapping
-    fun createAddress(@RequestBody addressCurriculumDTO: AddressCurriculumDTO): ResponseEntity<AddressCurriculumDTO> {
-        val addressCurriculumDTOS: AddressCurriculumDTO = addressService.createAddressByCurriculum(addressCurriculumDTO)
+    fun createSocial(@RequestBody socialNetworkCurriculumDTO: SocialNetworkCurriculumDTO): ResponseEntity<SocialNetworkCurriculumDTO> {
+        val socialNetworkCurriculumDTO = socialNetworkService.createSocialByCurriculum(socialNetworkCurriculumDTO)
         val uri: URI = ServletUriComponentsBuilder.fromCurrentRequest().path("/{id}")
-            .buildAndExpand(addressCurriculumDTOS.idAddress).toUri()
-        return ResponseEntity.created(uri).body(addressCurriculumDTOS)
+            .buildAndExpand(socialNetworkCurriculumDTO.idNetwork).toUri()
+        return ResponseEntity.created(uri).body(socialNetworkCurriculumDTO)
     }
 
     @PutMapping(value = ["/{id}"])
-    @Operation(summary = "Update Address By Id", description = "Update Address By Id",
-        tags = ["Address"],
+    @Operation(summary = "Update Social Network By Id", description = "Update Social Network By Id",
+        tags = ["Social"],
         responses = [
             ApiResponse(
                 description = "Success",
@@ -74,7 +75,33 @@ class AddressController(val addressService: AddressService) {
             ]),
         ]
     )
-    fun updateAddress(@PathVariable id: Long, @RequestBody addressDTO: AddressDTO): ResponseEntity<AddressDTO> {
-        return ResponseEntity.ok(addressService.updateAddressById(id, addressDTO))
+    fun updateAddress(@PathVariable id: Long, @RequestBody socialNetworkDTO: SocialNetworkDTO): ResponseEntity<SocialNetworkDTO> {
+        return ResponseEntity.ok(socialNetworkService.updateSocialById(id, socialNetworkDTO))
+    }
+
+    @Operation(summary = "Update Social Network By Id", description = "Update Social Network By Id",
+        tags = ["Social"],
+        responses = [
+            ApiResponse(description = "No Content", responseCode = "204", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Bad Request", responseCode = "400", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Unauthorized", responseCode = "401", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Not Found", responseCode = "404", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+            ApiResponse(description = "Internal Error", responseCode = "500", content = [
+                Content(schema = Schema(implementation = Unit::class))
+            ]),
+        ]
+    )
+    @DeleteMapping(value = ["/{id}"])
+    fun delete(@PathVariable id: Long): ResponseEntity<Void?>? {
+        socialNetworkService.deleteSocialById(id)
+        return ResponseEntity.noContent().build()
     }
 }

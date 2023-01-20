@@ -8,7 +8,7 @@ import jakarta.persistence.*
 data class SocialNetwork(
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    var idNetwork: Long? = null,
+    var idNetwork: Long = 0,
     var name: String,
     var url: String,
 
@@ -19,6 +19,6 @@ data class SocialNetwork(
 
 ) {
     override fun toString(): String {
-        return "SocialNetwork(idNetwork=$idNetwork, name='$name', url='$url', curriculum=$curriculum)"
+        return ""
     }
 }

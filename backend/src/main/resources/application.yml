@@ -1,0 +1,5 @@
+spring:
+  application:
+    name: skillresume
+  profiles:
+    active: test

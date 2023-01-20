@@ -1,16 +1,17 @@
 package com.skillsresume.curriculum.services
 
-import com.skillsresume.curriculum.DTOs.CurriculumDetailsDTO
-import com.skillsresume.curriculum.DTOs.CurriculumMinDTO
+import com.skillsresume.curriculum.DTOs.v1.CurriculumDetailsDTO
+import com.skillsresume.curriculum.DTOs.v1.CurriculumMinDTO
 import com.skillsresume.curriculum.entities.Curriculum
 import com.skillsresume.curriculum.repositories.CurriculumRepository
-import com.skillsresume.curriculum.services.exeptions.DataBaseException
-import com.skillsresume.curriculum.services.exeptions.ResourceNotFoundException
+import com.skillsresume.curriculum.services.exceptions.DataBaseException
+import com.skillsresume.curriculum.services.exceptions.ResourceNotFoundException
 import org.hibernate.exception.ConstraintViolationException
 import org.springframework.dao.DataIntegrityViolationException
 import org.springframework.dao.EmptyResultDataAccessException
 import org.springframework.data.domain.Page
 import org.springframework.data.domain.Pageable
+import org.springframework.orm.jpa.JpaObjectRetrievalFailureException
 import org.springframework.stereotype.Service
 import org.springframework.transaction.annotation.Propagation
 import org.springframework.transaction.annotation.Transactional
@@ -31,7 +32,7 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
     fun finCurriculumById(id: Long): CurriculumDetailsDTO {
         try {
             val curriculum: Curriculum =
-                curriculumRepository.findById(id).orElseThrow { ResourceNotFoundException("User not found") }
+                curriculumRepository.findById(id).orElseThrow { ResourceNotFoundException("Curriculum Not Found") }
             return (CurriculumDetailsDTO(curriculum))
         } catch (e: NullPointerException) {
             throw ResourceNotFoundException("Curriculum has no registered Address")
@@ -60,12 +61,13 @@ class CurriculumService(val curriculumRepository: CurriculumRepository) {
             curriculumEntity.objetive = curriculumMinDTO.objetive
             return CurriculumMinDTO(curriculumRepository.save(curriculumEntity))
         } catch (e: EmptyResultDataAccessException) {
-            throw ResourceNotFoundException("User not found")
+            throw ResourceNotFoundException("Curriculum not found")
+        } catch (e: JpaObjectRetrievalFailureException) {
+            throw ResourceNotFoundException("Curriculum not found")
         } catch (e: DataIntegrityViolationException) {
             throw DataBaseException("Referential integrity failure")
         }
     }
-
 }
 
 
