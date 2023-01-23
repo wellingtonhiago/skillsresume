@@ -59,7 +59,7 @@ class User : UserDetails {
     }
 
     override fun getUsername(): String {
-        return username
+        return userName!!
     }
 
     override fun isAccountNonExpired(): Boolean {

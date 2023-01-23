@@ -1,12 +1,10 @@
+cors:
+  originPatterns: http://localhost:3000, http://localhost:8080
+
 spring:
   application:
     name: skillresume
 
-  security:
-    jwt:
-      token:
-        secret-key: 53cr37
-        expire-length: 3600000
   h2:
     console:
       enabled: true
@@ -23,6 +21,11 @@ spring:
         show_sql: true
         format_sql: true
 
+security:
+  jwt:
+    token:
+      secret-key: 53cr37
+      expire-length: 3600000
 
 springdoc:
   paths-to-match:

@@ -85,12 +85,12 @@ class SecurityConfig {
 //        return http.build()
 //    }
 
-    @Bean
-    fun corsConfigurationSource(): CorsConfigurationSource? {
-        val configuration = CorsConfiguration().applyPermitDefaultValues()
-        configuration.allowedMethods = listOf("POST", "GET", "PUT", "DELETE", "OPTIONS")
-        val source = UrlBasedCorsConfigurationSource()
-        source.registerCorsConfiguration("/**", configuration)
-        return source
-    }
+//    @Bean
+//    fun corsConfigurationSource(): CorsConfigurationSource? {
+//        val configuration = CorsConfiguration().applyPermitDefaultValues()
+//        configuration.allowedMethods = listOf("POST", "GET", "PUT", "DELETE", "OPTIONS")
+//        val source = UrlBasedCorsConfigurationSource()
+//        source.registerCorsConfiguration("/**", configuration)
+//        return source
+//    }
 
