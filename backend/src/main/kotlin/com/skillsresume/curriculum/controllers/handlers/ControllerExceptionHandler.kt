@@ -3,6 +3,7 @@ package com.skillsresume.curriculum.controllers.handlers
 import com.skillsresume.curriculum.DTOs.handlersDTO.CustomError
 import com.skillsresume.curriculum.DTOs.handlersDTO.ValidationError
 import com.skillsresume.curriculum.services.exceptions.DataBaseException
+import com.skillsresume.curriculum.services.exceptions.InvalidJwtAuthenticationException
 import com.skillsresume.curriculum.services.exceptions.ResourceNotFoundException
 import jakarta.servlet.http.HttpServletRequest
 import org.hibernate.exception.ConstraintViolationException
@@ -25,6 +26,13 @@ class ControllerExceptionHandler {
     @ExceptionHandler(DataBaseException::class)
     fun dataBase(e: DataBaseException, request: HttpServletRequest): ResponseEntity<CustomError?>? {
         val status: HttpStatus = HttpStatus.BAD_REQUEST
+        val error = e.message?.let { CustomError(Instant.now(), status.value(), it, request.requestURI) }
+        return ResponseEntity.status(status).body<CustomError>(error)
+    }
+
+    @ExceptionHandler(InvalidJwtAuthenticationException::class)
+    fun invalidJwtAuthenticationException(e: InvalidJwtAuthenticationException, request: HttpServletRequest): ResponseEntity<CustomError?>? {
+        val status: HttpStatus = HttpStatus.FORBIDDEN
         val error = e.message?.let { CustomError(Instant.now(), status.value(), it, request.requestURI) }
         return ResponseEntity.status(status).body<CustomError>(error)
     }
